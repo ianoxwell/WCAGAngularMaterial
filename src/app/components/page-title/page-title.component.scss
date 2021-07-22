@@ -1,0 +1,11 @@
+@import '../../styles//variables.scss';
+
+a:link, a:visited {
+	color: var(--dialog-base-text);
+	text-decoration: none;
+}
+
+.mat-headline {
+	font-size: $heading-level-1;
+	font-weight: $font-weight-bold;
+}

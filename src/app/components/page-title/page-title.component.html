@@ -1,0 +1,8 @@
+<ng-container *ngIf="pageTitle$ | async as pageTitle">
+	<!-- If it is the default title (e.g. show a single provider) then don't show -->
+	<div class="mt-4 mb-4">
+		<h1 class="mat-headline" >
+			<a [href]="pageUrl$ | async" target="_self" id="pageTitleMainContent" class="page-title-link">{{pageTitle}}</a>
+		</h1>
+	</div>
+</ng-container>

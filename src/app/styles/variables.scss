@@ -1,0 +1,129 @@
+$border-radius: 0.5rem;
+$border-width: 1px;
+
+$font-weight-bold: 500;
+
+$max-width: 80rem;
+
+$spacing-1: 1rem;
+$spacing-2: 2rem;
+$spacing-3: 3rem;
+
+$small-text-size: 0.7rem;
+$body-text-size: 0.9rem;
+$body-text-size-line: 1.1rem;
+$user-control-text-size: 1.0675rem;
+$heading-level-1: 2.2rem;
+$heading-level-1-line: 2.93rem; // set as * 1.33 rounded to 2 decimal places
+$heading-level-2: 1.4rem;
+$heading-level-2-line: 1.86rem;
+$heading-level-3: 1.2rem;
+$heading-level-3-line: 1.6rem;
+$heading-level-4: 1rem;
+$heading-level-4-line: 1.33rem;
+$border-radius: 0.3rem;
+$border-thin: 1px;
+$border-thick: 3px;
+$cell-padding: 0.5rem;
+
+
+// Theme Config
+$primary: #c6a072;
+$primary-lighter: #eee3d5;
+$primary-darker: #b18455;
+
+$accent: #417b97;
+$accent-lighter: #c6d7e0;
+$accent-darker: #2a5e7a;
+
+$warn: #ce352e;
+$warn-lighter: #f0c2c0;
+$warn-darker: #bc221d;
+
+$success: #28a745;
+$colour-text-on-success: #F5F5F5;
+
+$alert: #ffd740;
+
+
+$widthsEm: (
+	0,
+	1,
+	2,
+	3,
+	4,
+	5,
+	6,
+	7,
+	8,
+	9,
+	10,
+	11,
+	12,
+	13,
+	14,
+	15,
+	16,
+	17,
+	18,
+	19,
+	20
+);
+
+$widthsPercent: (
+	5,
+	10,
+	15,
+	20,
+	24,
+	25,
+	30,
+	33,
+	35,
+	40,
+	45,
+	50,
+	55,
+	60,
+	65,
+	70,
+	75,
+	80,
+	81,
+	82,
+	85,
+	90,
+	91,
+	92,
+	93,
+	94,
+	95,
+	100
+);
+
+$heightsEm: (
+	0,
+	1,
+	2,
+	3,
+	4,
+	5,
+	6,
+	7,
+	8,
+	9,
+	10,
+	11,
+	12,
+	13,
+	14,
+	15,
+	16,
+	17,
+	18,
+	19,
+	20
+);
+
+$spaces: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+$sides: (top, right, bottom, left);

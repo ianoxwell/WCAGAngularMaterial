@@ -1,0 +1,15 @@
+@import '../../styles/mixins.scss';
+.save-button {
+	min-width: 7rem;
+	min-height: 2.25rem;
+	width: 100%;
+	.save-logo {
+		@include flex-box;
+		@include align-items(center);
+		@include justify-content(center);
+	}
+}
+.inner-spinner {
+	@include flex-box;
+	@include justify-content(center);
+}

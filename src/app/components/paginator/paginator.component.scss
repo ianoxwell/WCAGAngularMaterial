@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.narrow-select {
+	width: 4rem;
+}
+
+button:disabled, .mat-icon-button.mat-button-disabled {
+	background-color: var(--dialog-mid-grey);
+    font-size: 16px;
+	cursor: not-allowed;
+	.color-on-primary {
+		filter: invert(1);
+	}
+}
+
+.page-buttons {
+	.mat-icon-button:not(:last-child) {
+		margin-right: 2px;
+	}
+}
+
+.paginator {
+	border: $border-width;
+	border-style: solid;
+	border-color: var(--dialog-dark-grey);
+	border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}

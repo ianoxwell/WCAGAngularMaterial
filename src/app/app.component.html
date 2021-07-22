@@ -1,0 +1,21 @@
+<div role="alert">
+	<app-toast></app-toast>
+</div>
+<div class="container">
+	<app-header></app-header>
+	<div class="flex-box flex-row">
+		<main role="main" class="pl-6 pr-6 pb-6 main-body flex-grow-1">
+
+			<app-page-title></app-page-title>
+			<router-outlet></router-outlet>
+		</main>
+	</div>
+
+	<footer>
+		<app-footer></app-footer>
+	</footer>
+</div>
+
+<ng-template #loadingSpinner>
+	<app-loading-indicator></app-loading-indicator>
+</ng-template>

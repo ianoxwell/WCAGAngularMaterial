@@ -1,0 +1,27 @@
+<header class="container">
+	<!-- Skip to Content Tab -->
+	<nav id="skipToMainContent" aria-label="Skip to main content">
+		<h2 tabindex="0" hidden>Skip links and keyboard navigation</h2>
+		<div class="flex-container">
+			<ul id="access-header">
+				<li>
+					<button mat-button type="button" aria-label="Skip to main content" (click)="skip()">Skip to main
+						content</button>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="header pl-10 pr-6 pb-5 pt-5">
+		<div>
+			<div class="logo">
+
+			</div>
+		</div>
+		<button mat-menu-item type="button" (click)="toggleTheme()" aria-label="Toggle between light and dark themes">
+			<mat-icon [ngClass]="isDarkTheme ? 'dark-mode' : 'light-mode'"
+					  [matTooltip]="'Switch to ' + (isDarkTheme ? 'light' : 'dark') + ' mode'">
+				{{isDarkTheme ? 'brightness_3' : 'wb_sunny' }} </mat-icon>
+			<span>Switch Theme</span>
+		</button>
+	</div>
+</header>

@@ -1,0 +1,4 @@
+<div class="spinner" [ngClass]="{'partial-background': backgroundOpacity, 'full-spinner': fullSpinner, 'inline-spinner': !fullSpinner}">
+	<mat-spinner></mat-spinner>
+	<span>{{loadingWait$ | async}}</span>
+</div>
