@@ -1,28 +1,41 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class StateService {
-
+	currentTheme$ = new BehaviorSubject<string>('light-theme');
 
 	constructor(private storageService: StorageService) {}
 
 	/**
+	 * Gets the current value of the string set for the current table view.
+	 * @returns observable of the current table view.
+	 */
+	getCurrentTheme(): Observable<string> {
+		return this.currentTheme$.asObservable();
+	}
+
+	/**
 	 * Checks the user's current theme settings and updates the app accordingly.
-	 * If no theme is found, it defaults to light theme.
+	 * If no theme is found, it defaults to users preferred theme.
 	 * @returns Whether the user is currently using the dark theme.
 	 */
 	updateTheme(): boolean {
 		let theme = this.storageService.getItem('theme');
 
 		if (theme === null) {
-			theme = 'light-theme';
+			theme =
+				window.matchMedia &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark-theme'
+					: 'light-theme';
 			this.storageService.setItem('theme', theme);
 		}
 
-		document.querySelector('body')?.classList.add(theme);
+		this.currentTheme$.next(theme);
 
 		return theme === 'dark-theme';
 	}
@@ -36,13 +49,12 @@ export class StateService {
 	toggleTheme(isDarkTheme: boolean): boolean {
 		if (isDarkTheme) {
 			this.storageService.setItem('theme', 'dark-theme');
-			document.querySelector('body')?.classList.replace('light-theme', 'dark-theme');
+			this.currentTheme$.next('dark-theme');
 		} else {
 			this.storageService.setItem('theme', 'light-theme');
-			document.querySelector('body')?.classList.replace('dark-theme', 'light-theme');
+			this.currentTheme$.next('light-theme');
 		}
 
 		return isDarkTheme;
 	}
-
 }

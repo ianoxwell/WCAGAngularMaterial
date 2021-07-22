@@ -22,7 +22,7 @@ mat-icon {
 
 .container {
 	.header {
-		background-color: var(--dialog-header-grey);
+		
 
 		@include flex-box;
 		@include justify-content(space-between);
@@ -35,11 +35,8 @@ mat-icon {
 
 			.logo {
 				margin-right: 2rem;
-
-				img {
-					width: 170px;
-					height: 70px;
-				}
+				@include flex-box;
+				@include align-items(center);
 			}
 
 			nav {

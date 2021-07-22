@@ -10,8 +10,8 @@ export function autoSpy<T>(obj: new (...args: any[]) => T): Spy<T> {
 	// - merge with ownPropertyNames - that disregards the enumerable property.
 	const keys = [...Object.keys(obj.prototype), ...Object.getOwnPropertyNames(obj.prototype)];
 
-	// TODO the typing here is wrong and needs to be thought out properly
-	keys.forEach((key) => {
+	// Create object pairs from the keys.
+	keys.forEach((key: string) => {
 		res[key as keyof SpyOf<T>] = jasmine.createSpy(key) as SpyOf<T>[keyof T];
 	});
 

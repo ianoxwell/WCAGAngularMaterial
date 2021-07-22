@@ -41,9 +41,9 @@ export class StorageService {
 	 */
 	observeItem(key: string): Observable<string> {
 		const storageObservable$ = fromEvent<StorageEvent>(window, 'storage').pipe(
-			filter((event) => event.storageArea === this.getStorage()),
-			filter((event) => event.key === key),
-			map((event) => event.newValue as string)
+			filter((event: StorageEvent) => event.storageArea === this.getStorage()),
+			filter((event: StorageEvent) => event.key === key),
+			map((event: StorageEvent) => event.newValue as string)
 		);
 
 		return storageObservable$;
