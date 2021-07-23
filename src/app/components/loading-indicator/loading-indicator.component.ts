@@ -11,16 +11,26 @@ import { map, take } from 'rxjs/operators';
 })
 export class LoadingIndicatorComponent implements OnDestroy {
 	@Input() fullSpinner = true; // used to determine the spinner class applied
-	@Input() pageLoadedAltText = 'Page loaded';
+	@Input() pageLoadedAltText: string = '';
 	@Input() backgroundOpacity = false;
-	dataLoadingText = [
+	@Input() dataLoadingText: string[] = [
 		'Please wait, data loading.',
 		'Please wait, data is still loading.',
 		'Thank you for your patience.',
 		'Seems to be taking a while.',
 		'Can you try refreshing your browser?'
 	];
-	loadingWait$: Observable<string> = timer(500, 3500).pipe(
+	@Input() dueTime: number = 500;
+	@Input() periodDelay: number = 3500;
+
+	/**
+	 * Note that this is subscribed to using the async pattern in the template,
+	 * Therefore it does not need to be unsubscribed.
+	 */
+	loadingWait$: Observable<string> = timer(
+		this.dueTime,
+		this.periodDelay
+	).pipe(
 		take(this.dataLoadingText.length),
 		map((i: number) => {
 			this.liveAnnouncer.announce(this.dataLoadingText[i]);
@@ -28,10 +38,16 @@ export class LoadingIndicatorComponent implements OnDestroy {
 		})
 	);
 
-	constructor(private liveAnnouncer: LiveAnnouncer, private pageTitleService: PageTitleService) {}
+	constructor(
+		private liveAnnouncer: LiveAnnouncer,
+		private pageTitleService: PageTitleService
+	) {}
 
+	/**
+	 * On Destroy of the loading indicator (load complete), then the page to announce that data loading is complete.
+	 */
 	ngOnDestroy(): void {
-		const loadedText: string = this.pageLoadedAltText
+		const loadedText: string = this.pageLoadedAltText !== ''
 			? this.pageLoadedAltText
 			: `Data loaded, showing contents for page, ${this.pageTitleService.getTitle()}`;
 		this.liveAnnouncer.announce(loadedText);

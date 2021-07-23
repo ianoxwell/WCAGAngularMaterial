@@ -26,15 +26,15 @@
 						 W3C WAI Web Content Accessibility Guidelines 2.1">
 			</a>
 		</div>
-		<nav>
+		<nav aria-label="Main Navigation">
 			<button mat-flat-button [matMenuTriggerFor]="menu" title="Select for drop down menu">
 				<mat-icon role="image" alt="menu">menu</mat-icon>
 				<span>Menu</span>
 			</button>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item routerLink="/">Basic Layout</button>
-				<button mat-menu-item routerLink="/forms">Forms</button>
-				<button mat-menu-item routerLink="/tables">Tables</button>
+				<button mat-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="active"
+						#menuItem="routerLinkActive" [attr.aria-current]="menuItem.isActive ? 'page' : undefined"
+						[routerLinkActiveOptions]="{exact: true}">{{item.title}}</button>
 			</mat-menu>
 		</nav>
 		<button mat-flat-button type="button" (click)="toggleTheme()" aria-label="Toggle between light and dark themes">

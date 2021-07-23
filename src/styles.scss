@@ -22,11 +22,11 @@
 
 // Light theme
 $light-primary: mat-palette($mat-teal, 200);
-$light-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-accent: mat-palette($mat-deep-orange, 900, A100, A400);
 $light-theme: mat-light-theme($light-primary, $light-accent);
 
 .light-theme {
-	@include angular-material-theme($light-theme);
+	@include all-component-themes($light-theme);
 }
 
 // Dark theme
@@ -36,7 +36,7 @@ $dark-warn: mat-palette($mat-deep-orange);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
-	@include angular-material-theme($dark-theme);
+	@include all-component-themes($dark-theme);
 	@include mat-strong-focus-indicators-theme(orange);
 	a:-webkit-any-link {
 		color: white;
@@ -64,4 +64,21 @@ a.mat-focus-indicator::before {
 }
 a.mat-focus-indicator:focus-visible {
 	outline: none;
+}
+
+.dark-theme .mat-menu-item.active {
+	$alt-text: map-get($light-theme, foreground);
+	background-color: mat-color($dark-accent);
+	color: mat-color($alt-text, text);
+	&:hover {
+		background-color: mat-color($dark-accent, lighter);
+	}
+}
+.light-theme .mat-menu-item.active {
+	$alt-text: map-get($dark-theme, foreground);
+	background-color: mat-color($light-accent);
+	color: mat-color($alt-text, text);
+	&:hover {
+		background-color: mat-color($light-accent, lighter);
+	}
 }

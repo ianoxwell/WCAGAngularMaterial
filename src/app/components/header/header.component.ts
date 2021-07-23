@@ -10,7 +10,11 @@ import { StateService } from '@services/state.service';
 })
 export class HeaderComponent extends ComponentBase implements OnInit {
 	isDarkTheme = false;
-	isMenuExpanded = false;
+	menuItems = [
+		{ title: 'Basic Layouts', link: '/' },
+		{ title: 'Forms', link: '/forms' },
+		{ title: 'Tables', link: '/table' }
+	]
 
 	constructor(@Inject(DOCUMENT) private document: Document, private stateService: StateService) {
 		super();

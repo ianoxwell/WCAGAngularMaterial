@@ -21,28 +21,11 @@ nav {
 	}
 }
 
+
+
 .logo {
 	@include flex-box;
 	@include align-items(center);
-}
-.container {
-	.header {
-		
-
-		@include flex-box;
-		@include justify-content(space-between);
-		@include align-items(center);
-
-		div:first-child {
-			@include flex-box;
-			@include flex-direction(row);
-			@include align-items(center);
-
-
-
-
-		}
-	}
 }
 
 #skipToMainContent {
