@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MessageService } from '@services/message.service';
 import { PageTitleService } from '@services/page-title.service';
 import { CompleteMaterialModule } from '../app-material.module';
+import { ALinkDirective } from '../directives/a-link.directive';
 import { FormAutocompleteDirective } from '../directives/form-autocomplete.directive';
 import { MatInputAutoCompleteDirective } from '../directives/mat-input-autocomplete.directive';
 import { FooterComponent } from './footer/footer.component';
@@ -30,6 +31,7 @@ import { ToastComponent } from './toast/toast.component';
 		ToastItemComponent,
 		ToastComponent,
 		PageTitleComponent,
+		ALinkDirective,
 		FormAutocompleteDirective,
 		MatInputAutoCompleteDirective,
 		PaginatorComponent,
