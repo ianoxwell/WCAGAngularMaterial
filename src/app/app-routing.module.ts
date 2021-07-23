@@ -1,7 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BasicLayoutComponent } from '@components/pages/basic-layout/basic-layout.component';
+import { FormsComponent } from '@components/pages/forms/forms.component';
+import { TablesComponent } from '@components/pages/tables/tables.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+	{
+		path: '',
+		component: BasicLayoutComponent,
+		data: { title: `Angular Material WCAG Basic Layout Demo` }
+	},
+	{
+		path: 'forms',
+		component: FormsComponent,
+		data: { title: `Angular Material WCAG Forms Demo` }
+	},
+	{
+		path: 'tables',
+		component: TablesComponent,
+		data: { title: `Angular Material WCAG Table Demo` }
+	},
+	{
+		path: '',
+		redirectTo: 'list',
+		pathMatch: 'full'
+	}
+];
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],

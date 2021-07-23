@@ -57,7 +57,8 @@ body {
 	padding: 0;
 }
 
-// for some reason the focus indicator outline only works on mat-buttons - not links
+// additional classes for mat-strong-focus-indicators for links,
+// used in conjunction with ALinkDirective to apply class to all links.
 a.mat-focus-indicator::before {
 	margin: -4px;
 }
