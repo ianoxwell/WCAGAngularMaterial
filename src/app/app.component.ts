@@ -5,6 +5,7 @@ import { ComponentBase } from '@components/base/base.component.base';
 import { PageTitleService } from '@services/page-title.service';
 import { StateService } from '@services/state.service';
 import { takeUntil, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-root',
@@ -13,6 +14,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 })
 export class AppComponent extends ComponentBase implements OnInit {
 	themes: string[] = ['light-theme', 'dark-theme'];
+	siteName: string = environment.appTitle;
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
@@ -25,6 +27,7 @@ export class AppComponent extends ComponentBase implements OnInit {
 	}
 
 	ngOnInit(): void {
+		// fix for WCAG overlay bug - https://github.com/angular/components/issues/20001
 		this.overlayContainer.getContainerElement().setAttribute('role', 'region');
 		this.pageTitleService
 			.listenPageTitle()

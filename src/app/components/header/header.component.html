@@ -1,4 +1,4 @@
-<header>
+<header role="banner">
 	<!-- Skip to Content Tab -->
 	<nav id="skipToMainContent" aria-label="Skip to main content">
 		<h2 tabindex="0" hidden>Skip links and keyboard navigation</h2>
@@ -11,33 +11,35 @@
 			</ul>
 		</div>
 	</nav>
-	<mat-toolbar color="primary" role="navigation" class="flex-justify-space-between">
-		<div>
-			<div class="logo">
-				<a href="https://angular.io/" title="Angular">
-					<img height="32" src="../../../assets/logo-nav@2x.png" alt="Angular">
-				</a>
-				<mat-icon>add</mat-icon>
-				<a href="https://material.angular.io/" title="Angular Material">
-					<img height="32" width="32" src="../../../assets/angular-material-logo.svg" alt="Angular Material">
-				</a>
-				<mat-icon>add</mat-icon>
-				<a href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance">
-					<img height="32" width="88" src="https://www.w3.org/WAI/WCAG21/wcag2.1AA-v" alt="Level AA conformance,
+	<mat-toolbar color="primary" class="flex-justify-space-between">
+		<div class="logo">
+			<a href="https://angular.io/" class="mat-focus-indicator" title="Link to Angular">
+				<img height="32" src="../../../assets/logo-nav@2x.png" alt="Angular">
+			</a>
+			<mat-icon role="image" alt="add" class="ml-1">add</mat-icon>
+			<a href="https://material.angular.io/" class="mat-focus-indicator" title="Link to Angular Material">
+				<img height="32" src="../../../assets/angular-material-logo.svg" alt="Angular Material">
+			</a>
+			<mat-icon role="image" alt="add" class="ml-1">add</mat-icon>
+			<a href="https://www.w3.org/WAI/WCAG2AA-Conformance" class="mat-focus-indicator" title="Link to Explanation of WCAG 2 Level AA conformance">
+				<img height="32" src="https://www.w3.org/WAI/WCAG21/wcag2.1AA-v" alt="Level AA conformance,
 						 W3C WAI Web Content Accessibility Guidelines 2.1">
-				</a>
-			</div>
+			</a>
 		</div>
-		<div>
-			<button mat-icon-button [matMenuTriggerFor]="menu" mdTooltip="Change theme"><mat-icon>format_color_fill</mat-icon></button>
+		<nav>
+			<button mat-flat-button [matMenuTriggerFor]="menu" title="Select for drop down menu">
+				<mat-icon role="image" alt="menu">menu</mat-icon>
+				<span>Menu</span>
+			</button>
 			<mat-menu #menu="matMenu">
-			  <button mat-menu-item >Light</button>
-			  <button mat-menu-item >Dark</button>
+				<button mat-menu-item routerLink="/">Basic Layout</button>
+				<button mat-menu-item routerLink="/forms">Forms</button>
+				<button mat-menu-item routerLink="/tables">Tables</button>
 			</mat-menu>
-		</div>
+		</nav>
 		<button mat-flat-button type="button" (click)="toggleTheme()" aria-label="Toggle between light and dark themes">
 			<mat-icon [ngClass]="isDarkTheme ? 'dark-mode' : 'light-mode'"
-					  [matTooltip]="'Switch to ' + (isDarkTheme ? 'light' : 'dark') + ' mode'">
+					  [title]="'Switch to ' + (isDarkTheme ? 'light' : 'dark') + ' mode'">
 				{{isDarkTheme ? 'brightness_3' : 'wb_sunny' }} </mat-icon>
 			<span>Switch Theme</span>
 		</button>

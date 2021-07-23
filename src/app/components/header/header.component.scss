@@ -3,8 +3,8 @@
 
 mat-icon {
 	height: unset;
-	color: var(--dialog-base-text);
-	width: 1em;
+	// width: 1em;
+	margin-right: 0.5rem;
 
 	&.dark-mode {
 		transform: rotate(36deg);
@@ -15,11 +15,16 @@ mat-icon {
 		cursor: pointer;
 	}
 }
-
-.menu-icon {
-	color: var(--dialog-header-text);
+nav {
+	button {
+		font-size: $heading-level-2;
+	}
 }
 
+.logo {
+	@include flex-box;
+	@include align-items(center);
+}
 .container {
 	.header {
 		
@@ -33,21 +38,9 @@ mat-icon {
 			@include flex-direction(row);
 			@include align-items(center);
 
-			.logo {
-				margin-right: 2rem;
-				@include flex-box;
-				@include align-items(center);
-			}
 
-			nav {
-				button {
-					font-size: $heading-level-2;
 
-					.mat-icon {
-						margin-right: 0.5rem;
-					}
-				}
-			}
+
 		}
 	}
 }

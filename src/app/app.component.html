@@ -4,7 +4,7 @@
 	</div>
 	<!-- <div class="container"> -->
 	<app-header></app-header>
-	<main role="main" class="pl-6 pr-6 pb-6 main-body flex-grow-1">
+	<main role="main" class="pl-6 pr-6 pb-6 main-body" [attr.aria-label]="'Main content column for ' + siteName">
 
 		<app-page-title></app-page-title>
 		<router-outlet></router-outlet>
