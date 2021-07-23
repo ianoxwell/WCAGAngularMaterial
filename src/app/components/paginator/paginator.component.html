@@ -8,6 +8,8 @@
 			</mat-select>
 		</mat-form-field>
 	</span>
+
+	<!-- Next/prev page buttons -->
 	<span class="flex-box flex-align-center" [ngClass]="{'flex-row': horizontalLayout, 'flex-column': !horizontalLayout}">
 		<span class="text-small"
 			  [ngClass]="{'mr-4': horizontalLayout, 'mb-1': !horizontalLayout}">{{getMinOfItemOnCurrentPage()}}{{getMaxOfItemOnCurrentPage()}}
