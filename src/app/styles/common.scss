@@ -1,3 +1,6 @@
+@use "sass:math";
+@import './variables.scss';
+
 .print-only {
 	display: none;
 	visibility: hidden;
@@ -5,13 +8,10 @@
 
 .text- {
 	&success {
-		color: var(--dialog-green-darker);
+		color: $success;
 	}
 	&bold {
 		font-weight: $font-weight-bold;
-	}
-	&muted {
-		color: var(--dialog-placeholder-text);
 	}
 }
 
@@ -29,20 +29,20 @@
 
 @each $space in $spaces {
 	.m-#{$space} {
-		margin: #{$space/2}rem;
+		margin: #{math.div($space, 2)}rem;
 	}
 
 	.p-#{$space} {
-		padding: #{$space/2}rem;
+		padding: #{math.div($space, 2)}rem;
 	}
 
 	@each $side in $sides {
 		.m#{str-slice($side, 0, 1)}-#{$space} {
-			margin-#{$side}: #{$space/2}rem !important;
+			margin-#{$side}: #{math.div($space, 2)}rem !important;
 		}
 
 		.p#{str-slice($side, 0, 1)}-#{$space} {
-			padding-#{$side}: #{$space/2}rem !important;
+			padding-#{$side}: #{math.div($space, 2)}rem !important;
 		}
 	}
 }
@@ -55,7 +55,7 @@
 
 @each $width in $widthsPercent {
 	.w-#{$width} {
-		width: percentage($width / 100);
+		width: percentage(math.div($width, 100));
 	}
 }
 
@@ -143,7 +143,7 @@ body .ui-toast .ui-toast-message {
 	}
 }
 body .ui-toast .ui-toast-message.ui-toast-message-info {
-	background-color: $accent-lighter;
+	background-color: mat-color($dark-accent, background);
 	border: 0 none;
 	color: #212121;
 }
@@ -166,4 +166,66 @@ body .ui-toast .ui-toast-message.ui-toast-message-error {
 	background-color: $warn;
 	border: 0 none;
 	color: $colour-text-on-success;
+}
+
+.dark-theme {
+	.mat-form-field-required-marker,
+	.mat-form-field.mat-focused
+		.mat-form-field-label
+		.mat-form-field-required-marker,
+	.mat-form-field.mat-form-field-invalid
+		.mat-form-field-label
+		.mat-form-field-required-marker {
+		color: $dark-warn-color;
+	}
+	mat-form-field.mat-focused {
+		.mat-form-field-outline {
+			color: orange !important;
+		}
+	}
+	.mat-form-field-prefix .mat-icon {
+		color: $light-primary-text !important;
+		background-color: $dark-primary-color;
+	}
+	a:-webkit-any-link {
+		color: $light-primary-text;
+	}
+}
+
+.light-theme {
+	.mat-form-field-required-marker,
+	.mat-form-field.mat-focused
+		.mat-form-field-label
+		.mat-form-field-required-marker,
+	.mat-form-field.mat-form-field-invalid
+		.mat-form-field-label
+		.mat-form-field-required-marker {
+		color: $light-warn-color;
+	}
+	mat-form-field.mat-focused {
+		.mat-form-field-outline {
+			color: orange !important;
+		}
+		.mat-form-field-label {
+			color: $dark-primary-text !important;
+		}
+	}
+	.mat-form-field-prefix .mat-icon {
+		color: $light-primary-text !important;
+		background-color: $light-primary-color;
+	}
+	a:-webkit-any-link {
+		color: $light-primary-text;
+	}
+}
+
+.mat-form-field-prefix .mat-icon {
+	line-height: 3rem;
+	height: 2.8rem;
+	width: 2.6rem;
+	text-align: center;
+	margin-left: -0.5rem;
+	margin-right: 0.5rem;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 }

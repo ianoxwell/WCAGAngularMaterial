@@ -32,6 +32,7 @@
 				<span>Menu</span>
 			</button>
 			<mat-menu #menu="matMenu">
+				<!-- https://www.w3.org/WAI/tutorials/menus/structure/ -->
 				<button mat-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="active"
 						#menuItem="routerLinkActive" [attr.aria-current]="menuItem.isActive ? 'page' : undefined"
 						[routerLinkActiveOptions]="{exact: true}">{{item.title}}</button>

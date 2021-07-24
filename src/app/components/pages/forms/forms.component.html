@@ -4,48 +4,67 @@
 		<mat-card-content>
 
 			<!-- Name -->
-			<div class="flex-box flex-align-center">
+			<div class="flex-box flex-align-center mb-3">
 				<mat-form-field appearance="outline" class="w-90 form-control">
 					<mat-label>Name</mat-label>
-					<input type="text" matInput formControlName="name" name="name" />
+					<mat-icon matPrefix alt="Person">person</mat-icon>
+					<input type="text" matInput formControlName="name" name="name" required id="name" />
+					<mat-error *ngFor="let errorKey of form.get('name')?.errors | errorkeys">
+						{{ errorKey | formErrorPipe: form.get('name')?.getError(errorKey) }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 
 			<!-- Email -->
-			<div class="flex-box flex-align-center">
+			<div class="flex-box flex-align-center mb-3">
 				<mat-form-field appearance="outline" class="w-90 form-control">
-					<mat-label>Name</mat-label>
+					<mat-label>Email</mat-label>
+					<mat-icon matPrefix alt="Email">email</mat-icon>
 					<input type="text" matInput formControlName="email" name="email" />
+					<mat-error *ngFor="let errorKey of form.get('email')?.errors | errorkeys">
+						{{ errorKey | formErrorPipe: form.get('email')?.getError(errorKey) }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 
 			<!-- Contact Phone -->
-			<div class="flex-box flex-align-center">
+			<div class="flex-box flex-align-center mb-3">
 				<mat-form-field appearance="outline" class="w-90 form-control">
 					<mat-label>Phone / Mobile</mat-label>
+					<mat-icon matPrefix alt="Mobile">stay_primary_portrait</mat-icon>
 					<input matInput type="tel" formControlName="mobile" name="street-address" />
+					<mat-error *ngFor="let errorKey of form.get('mobile')?.errors | errorkeys">
+						{{ errorKey | formErrorPipe: form.get('mobile')?.getError(errorKey) }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 
 			<!-- Contact Address -->
-			<div class="flex-box flex-align-center">
+			<div class="flex-box flex-align-center mb-3">
 				<mat-form-field appearance="outline" class="w-90 form-control">
 					<mat-label>Address</mat-label>
+					<mat-icon matPrefix alt="Mobile">home</mat-icon>
 					<input type="text" matInput formControlName="address" name="street-address" />
+					<mat-error *ngFor="let errorKey of form.get('address')?.errors | errorkeys">
+						{{ errorKey | formErrorPipe: form.get('address')?.getError(errorKey) }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 
 			<!-- State -->
-			<mat-form-field appearance="outline" class="half form-control">
-				<mat-label>State</mat-label>
-				<mat-select required formControlName="state" role="" name="country-name">
+			<mat-form-field appearance="outline" class="w-90 form-control mb-3">
+				<mat-label #stateLabel>State</mat-label>
+				<mat-icon matPrefix alt="State location">location_on</mat-icon>
+				<mat-select required formControlName="state" name="country-name" #stateSelectCombo (openedChange)="setFakeAriaControl($event)">
 					<mat-option [value]="null" role="option">---</mat-option>
 					<mat-option role="option" *ngFor="let option of states" [value]="option.value">
 						{{option.title}}
 					</mat-option>
 				</mat-select>
+				<mat-error *ngFor="let errorKey of form.get('state')?.errors | errorkeys">
+					{{ errorKey | formErrorPipe: form.get('state')?.getError(errorKey) }}
+				</mat-error>
 			</mat-form-field>
-
 			<!-- Description -->
 			<div class="flex-box flex-align-center">
 				<mat-form-field appearance="outline" class="w-90 form-control">
@@ -54,8 +73,10 @@
 				</mat-form-field>
 			</div>
 		</mat-card-content>
-		<mat-card-footer>
-			<div class="flex-box flex-row flex-justify-space-between">
+
+		<!-- Footer action buttons -->
+		<mat-card-footer class="p-2 pb-4">
+			<div class="flex-box flex-row flex-justify-space-between pl-2 pr-2 w-90">
 				<button mat-flat-button type="button" (click)="resetForm()" color="accent" title="Clear and reset sample form.">Reset
 					Form</button>
 				<app-save-button (save)="submitForm()"></app-save-button>

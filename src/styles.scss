@@ -5,6 +5,7 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @import '~@angular/material/theming';
+@import './app/styles/variables.scss';
 @include mat-core();
 
 // https://material.angular.io/guide/theming#strong-focus-indicators
@@ -20,32 +21,23 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Colour checker accessibility tools: https://material.io/resources/color.
 
-// Light theme
-$light-primary: mat-palette($mat-teal, 200);
-$light-accent: mat-palette($mat-deep-orange, 900, A100, A400);
-$light-theme: mat-light-theme($light-primary, $light-accent);
+
 
 .light-theme {
 	@include all-component-themes($light-theme);
+	@include mat-strong-focus-indicators-theme(orange);
 }
 
-// Dark theme
-$dark-primary: mat-palette($mat-teal, 700);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
-$dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
 
 .dark-theme {
 	@include all-component-themes($dark-theme);
 	@include mat-strong-focus-indicators-theme(orange);
-	a:-webkit-any-link {
-		color: white;
-	}
 }
 
 // Import own styles and over-rides.
 @import './app/styles/mixins.scss';
-@import './app/styles/variables.scss';
+
 @import './app/styles/common.scss';
 
 html,

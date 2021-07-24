@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 $border-radius: 0.5rem;
 $border-width: 1px;
 
@@ -24,13 +26,32 @@ $cell-padding: 0.5rem;
 
 
 // Theme Config
-$primary: #c6a072;
-$primary-lighter: #eee3d5;
-$primary-darker: #b18455;
+// Light theme
+$light-primary: mat-palette($mat-teal, 700);
+$light-accent: mat-palette($mat-deep-orange, 900, A100, A400);
+$light-warn: mat-palette($mat-red, 900);
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
-$accent: #417b97;
-$accent-lighter: #c6d7e0;
-$accent-darker: #2a5e7a;
+$light-primary-color: mat-color($mat-teal, 700);
+$light-warn-color: mat-color($mat-red, 900);
+
+// Dark theme
+$dark-primary: mat-palette($mat-teal, 700);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-red, 200);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+$dark-primary-color: mat-color($mat-teal, 700);
+$dark-warn-color: mat-color($mat-red, 200);
+
+
+// $primary: #c6a072;
+// $primary-lighter: #eee3d5;
+// $primary-darker: #b18455;
+
+// $accent: #417b97;
+// $accent-lighter: #c6d7e0;
+// $accent-darker: #2a5e7a;
 
 $warn: #ce352e;
 $warn-lighter: #f0c2c0;

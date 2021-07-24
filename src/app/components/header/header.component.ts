@@ -13,7 +13,7 @@ export class HeaderComponent extends ComponentBase implements OnInit {
 	menuItems = [
 		{ title: 'Basic Layouts', link: '/' },
 		{ title: 'Forms', link: '/forms' },
-		{ title: 'Tables', link: '/table' }
+		{ title: 'Tables', link: '/tables' }
 	]
 
 	constructor(@Inject(DOCUMENT) private document: Document, private stateService: StateService) {
