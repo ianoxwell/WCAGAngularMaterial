@@ -6,18 +6,8 @@ import { FormErrorMessagePipe } from './form-error-message.pipe';
 
 @NgModule({
 	imports: [CommonModule],
-	declarations: [
-		ErrorkeysPipe,
-		FormErrorCountPipe,
-		FormErrorMessagePipe
-	],
-	exports: [
-		ErrorkeysPipe,
-		FormErrorCountPipe,
-		FormErrorMessagePipe
-	],
-	providers: [
-		ErrorkeysPipe,
-	]
+	declarations: [ErrorkeysPipe, FormErrorCountPipe, FormErrorMessagePipe],
+	exports: [ErrorkeysPipe, FormErrorCountPipe, FormErrorMessagePipe],
+	providers: [ErrorkeysPipe]
 })
 export class ApplicationPipesModule {}

@@ -3,11 +3,10 @@ import { Message } from '@models/message.model';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class MessageService {
-
-	private messageSource = new Subject<Message|Message[]>();
+	private messageSource = new Subject<Message | Message[]>();
 	private clearSource = new Subject<string>();
 
 	messageObserver = this.messageSource.asObservable();
@@ -31,5 +30,4 @@ export class MessageService {
 	clear(key?: string): void {
 		this.clearSource.next(key);
 	}
-
 }

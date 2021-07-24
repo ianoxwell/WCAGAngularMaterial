@@ -27,11 +27,7 @@ export class StateService {
 		let theme = this.storageService.getItem('theme');
 
 		if (theme === null) {
-			theme =
-				window.matchMedia &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches
-					? 'dark-theme'
-					: 'light-theme';
+			theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-theme' : 'light-theme';
 			this.storageService.setItem('theme', theme);
 		}
 

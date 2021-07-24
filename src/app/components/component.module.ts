@@ -42,14 +42,7 @@ import { ToastComponent } from './toast/toast.component';
 		SaveButtonComponent,
 		LoadingIndicatorComponent
 	],
-	exports: [
-		ToastComponent,
-		FormsComponent,
-		PageTitleComponent,
-		FooterComponent,
-		HeaderComponent,
-		LoadingIndicatorComponent
-	],
+	exports: [ToastComponent, FormsComponent, PageTitleComponent, FooterComponent, HeaderComponent, LoadingIndicatorComponent],
 	providers: [MessageService, PageTitleService]
 })
 export class ComponentModule {}

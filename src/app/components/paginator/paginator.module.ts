@@ -7,23 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { PaginatorComponent } from './paginator.component';
 
-
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatButtonModule,
-		MatSelectModule,
-		MatCommonModule,
-		MatIconModule
-	],
-	declarations: [
-		PaginatorComponent,
-	],
-	exports: [
-		PaginatorComponent
-	],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, MatButtonModule, MatSelectModule, MatCommonModule, MatIconModule],
+	declarations: [PaginatorComponent],
+	exports: [PaginatorComponent],
 	providers: []
 })
 export class PaginatorModule {}

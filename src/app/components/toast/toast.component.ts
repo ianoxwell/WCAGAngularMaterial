@@ -1,10 +1,5 @@
 import { animateChild, AnimationEvent, query, transition, trigger } from '@angular/animations';
-import {
-	Component,
-	ElementRef, EventEmitter, Input, OnInit,
-	Output,
-	ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ComponentBase } from '@components/base/base.component.base';
 import { CloseMessage, Message } from '@models/message.model';
 import { MessageService } from '@services/message.service';
@@ -15,19 +10,12 @@ import { filter, takeUntil, tap } from 'rxjs/operators';
 	selector: 'app-toast',
 	templateUrl: './toast.component.html',
 	styleUrls: ['./toast.component.scss'],
-	animations: [
-			trigger('toastAnimation', [
-				transition(':enter, :leave', [
-					query('@*', animateChild())
-				])
-			])
-		]
+	animations: [trigger('toastAnimation', [transition(':enter, :leave', [query('@*', animateChild())])])]
 })
 
 // note - strongly based off of primeFaces - https://primefaces.org/primeng/showcase/#/toast
 export class ToastComponent extends ComponentBase implements OnInit {
-
-	@Input() key: string = '';
+	@Input() key = '';
 
 	@Input() autoZIndex = true;
 
@@ -51,12 +39,13 @@ export class ToastComponent extends ComponentBase implements OnInit {
 
 	mask: HTMLDivElement | null = null;
 
-	constructor(public messageService: MessageService) { super(); }
+	constructor(public messageService: MessageService) {
+		super();
+	}
 
 	ngOnInit() {
 		this.subscribeMessages().subscribe();
 		this.subscribeClear().subscribe();
-
 	}
 
 	/**
@@ -65,7 +54,7 @@ export class ToastComponent extends ComponentBase implements OnInit {
 	 */
 	subscribeMessages(): Observable<Message | Message[]> {
 		return this.messageService.messageObserver.pipe(
-			filter(m => !!m),
+			filter((m) => !!m),
 			tap((messages: Message | Message[]) => {
 				if (messages instanceof Array) {
 					const filteredMessages = messages.filter((m: Message) => this.key === m.key);
@@ -96,7 +85,7 @@ export class ToastComponent extends ComponentBase implements OnInit {
 				} else {
 					this.messages = [];
 				}
-	
+
 				if (this.modal) {
 					this.disableModality();
 				}

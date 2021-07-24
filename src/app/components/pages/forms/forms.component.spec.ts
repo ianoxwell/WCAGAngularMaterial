@@ -6,11 +6,13 @@ describe('FormsComponent', () => {
 	let component: FormsComponent;
 	let fixture: ComponentFixture<FormsComponent>;
 
-	beforeEach(waitForAsync(() => {
-		TestBed.configureTestingModule({
-			declarations: [ FormsComponent ]
-		}).compileComponents();
-	}));
+	beforeEach(
+		waitForAsync(() => {
+			TestBed.configureTestingModule({
+				declarations: [FormsComponent]
+			}).compileComponents();
+		})
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(EditCommonMineralsComponent);

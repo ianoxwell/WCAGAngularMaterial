@@ -1,10 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import {
-	FormBuilder,
-	FormGroup,
-	ValidationErrors,
-	Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
@@ -14,9 +9,7 @@ import { MatSelect } from '@angular/material/select';
 })
 export class FormsComponent implements OnInit, AfterViewInit {
 	form: FormGroup = {} as FormGroup;
-	@ViewChild('stateSelectCombo', { static: false }) stateSelectCombo:
-		| MatSelect
-		| undefined;
+	@ViewChild('stateSelectCombo', { static: false }) stateSelectCombo: MatSelect | undefined;
 
 	states = [
 		{ title: 'Australian Capital Territory', value: 'ACT' },
@@ -31,7 +24,6 @@ export class FormsComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		this.form = this.createForm();
-
 	}
 
 	ngAfterViewInit(): void {
@@ -66,30 +58,13 @@ export class FormsComponent implements OnInit, AfterViewInit {
 				'',
 				[
 					Validators.required,
-					Validators.pattern(
-						'^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
-					),
+					Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
 					Validators.minLength(4),
 					Validators.maxLength(100)
 				]
 			],
-			mobile: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern('[- +()0-9]+'),
-					Validators.minLength(8),
-					Validators.maxLength(14)
-				]
-			],
-			address: [
-				'',
-				[
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(100)
-				]
-			],
+			mobile: ['', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(8), Validators.maxLength(14)]],
+			address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
 			state: ['', Validators.required],
 			description: ''
 		});

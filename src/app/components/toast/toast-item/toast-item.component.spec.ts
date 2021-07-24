@@ -6,12 +6,13 @@ describe('ToastItemComponent', () => {
 	let component: ToastItemComponent;
 	let fixture: ComponentFixture<ToastItemComponent>;
 
-	beforeEach(waitForAsync(() => {
-		TestBed.configureTestingModule({
-		declarations: [ ToastItemComponent ]
+	beforeEach(
+		waitForAsync(() => {
+			TestBed.configureTestingModule({
+				declarations: [ToastItemComponent]
+			}).compileComponents();
 		})
-		.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ToastItemComponent);

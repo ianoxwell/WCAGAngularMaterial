@@ -6,11 +6,13 @@ describe('BasicLayoutComponent', () => {
 	let component: BasicLayoutComponent;
 	let fixture: ComponentFixture<BasicLayoutComponent>;
 
-	beforeEach(waitForAsync(() => {
-		TestBed.configureTestingModule({
-			declarations: [ BasicLayoutComponent ]
-		}).compileComponents();
-	}));
+	beforeEach(
+		waitForAsync(() => {
+			TestBed.configureTestingModule({
+				declarations: [BasicLayoutComponent]
+			}).compileComponents();
+		})
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(EditCommonMineralsComponent);

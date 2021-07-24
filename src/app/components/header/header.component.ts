@@ -14,7 +14,7 @@ export class HeaderComponent extends ComponentBase implements OnInit {
 		{ title: 'Basic Layouts', link: '/' },
 		{ title: 'Forms', link: '/forms' },
 		{ title: 'Tables', link: '/tables' }
-	]
+	];
 
 	constructor(@Inject(DOCUMENT) private document: Document, private stateService: StateService) {
 		super();
@@ -31,9 +31,7 @@ export class HeaderComponent extends ComponentBase implements OnInit {
 	 * Scrolls the page to the main content section avoiding navigation elements.
 	 */
 	skip(): void {
-		const pageTitleElement = this.document.getElementById(
-			'pageTitleMainContent'
-		);
+		const pageTitleElement = this.document.getElementById('pageTitleMainContent');
 		pageTitleElement?.scrollIntoView();
 		pageTitleElement?.focus();
 	}

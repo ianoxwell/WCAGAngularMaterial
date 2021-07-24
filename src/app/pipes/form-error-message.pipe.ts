@@ -54,12 +54,7 @@ export class FormErrorMessagePipe implements PipeTransform {
 				errorMessage = `This field needs at least one item to complete form.`;
 				break;
 			default:
-				errorMessage =
-					!!errorObj &&
-					typeof errorObj === 'object' &&
-					errorObj.message
-						? errorObj.message
-						: 'There is an error.';
+				errorMessage = !!errorObj && typeof errorObj === 'object' && errorObj.message ? errorObj.message : 'There is an error.';
 		}
 
 		return errorMessage;

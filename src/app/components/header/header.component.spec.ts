@@ -31,9 +31,7 @@ describe('HeaderComponent', () => {
 					MatButtonModule
 				],
 				declarations: [HeaderComponent],
-				providers: [
-					{ provide: StateService, useValue: stateServiceSpy }
-				]
+				providers: [{ provide: StateService, useValue: stateServiceSpy }]
 			}).compileComponents();
 		})
 	);

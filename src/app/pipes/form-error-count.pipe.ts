@@ -6,7 +6,6 @@ import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/for
 	pure: false
 })
 export class FormErrorCountPipe implements PipeTransform {
-
 	transform(value: AbstractControl | null, isFormSubmitted: boolean): number {
 		return this.getErrorCount(value, isFormSubmitted);
 	}
@@ -26,22 +25,21 @@ export class FormErrorCountPipe implements PipeTransform {
 			const groupCount = this.getErrorCountFromObjectForGroup(controlToLookAt, isFormSubmitted);
 
 			const subControlCount = Object.keys(controlToLookAt.controls)
-				.map(fieldName => controlToLookAt.get(fieldName))
-				.map(fieldControl => this.getErrorCount(fieldControl, isFormSubmitted))
+				.map((fieldName) => controlToLookAt.get(fieldName))
+				.map((fieldControl) => this.getErrorCount(fieldControl, isFormSubmitted))
 				.reduce((total, increase) => total + increase, 0);
 
 			return groupCount + subControlCount;
-
 		} else if (controlToLookAt instanceof FormArray) {
 			const arrayCount = this.getErrorCountFromObject(controlToLookAt, isFormSubmitted);
 
 			const subControlCount = controlToLookAt.controls
-				.map(arrayControl => this.getErrorCount(arrayControl, isFormSubmitted))
+				.map((arrayControl) => this.getErrorCount(arrayControl, isFormSubmitted))
 				.reduce((total, increase) => total + increase, 0);
 			return arrayCount + subControlCount;
 		}
 		return 0;
-	};
+	}
 
 	private getAssociatedControlNames(error: { associatedControl?: string | string[] }): string[] {
 		if (typeof error.associatedControl === 'string') {
@@ -59,7 +57,7 @@ export class FormErrorCountPipe implements PipeTransform {
 	private isAssociatedControlTouched(objectToLookAt: FormGroup, f: string): boolean {
 		const error = objectToLookAt.getError(f);
 		const associatedControlNames = this.getAssociatedControlNames(error);
-		const isAnyTouched = associatedControlNames.some(controlName => objectToLookAt.get(controlName)?.touched);
+		const isAnyTouched = associatedControlNames.some((controlName) => objectToLookAt.get(controlName)?.touched);
 		return isAnyTouched;
 	}
 
@@ -74,16 +72,19 @@ export class FormErrorCountPipe implements PipeTransform {
 			return Object.keys(objectToLookAt.errors).length;
 		} else {
 			// Work out which errors to display based on whether the associated controls are touched.
-			return objectToLookAt.errors ? Object.keys(objectToLookAt.errors)
-				.filter(f => objectToLookAt.getError(f).associatedControl)
-				.filter(f => this.isAssociatedControlTouched(objectToLookAt, f))
-				.length : 0;
+			return objectToLookAt.errors
+				? Object.keys(objectToLookAt.errors)
+						.filter((f) => objectToLookAt.getError(f).associatedControl)
+						.filter((f) => this.isAssociatedControlTouched(objectToLookAt, f)).length
+				: 0;
 		}
 	}
 
 	// Get number of errors for a form control, group and array.
 	private getErrorCountFromObject(objectToLookAt: AbstractControl | null, isFormSubmitted: boolean): number {
-		return this.areErrorsVisible(objectToLookAt, isFormSubmitted) && objectToLookAt?.errors ? Object.keys(objectToLookAt.errors).length : 0;
+		return this.areErrorsVisible(objectToLookAt, isFormSubmitted) && objectToLookAt?.errors
+			? Object.keys(objectToLookAt.errors).length
+			: 0;
 	}
 
 	private areErrorsVisible(objectToLookAt: AbstractControl | null, isFormSubmitted: boolean): boolean {

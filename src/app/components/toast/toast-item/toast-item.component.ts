@@ -2,39 +2,41 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { CloseMessage, Message, MessageStatus } from '@models/message.model';
 
-
 @Component({
 	selector: 'app-toast-item',
 	templateUrl: './toast-item.component.html',
 	styleUrls: ['../toast.component.scss'],
 	animations: [
-			trigger('messageState', [
-				state('visible', style({
+		trigger('messageState', [
+			state(
+				'visible',
+				style({
 					transform: 'translateY(0)',
 					opacity: 1
-				})),
-				transition('void => *', [
-					style({transform: 'translateY(100%)', opacity: 0}),
-					animate('{{showTransitionParams}}')
-				]),
-				transition('* => void', [
-					animate(('{{hideTransitionParams}}'), style({
+				})
+			),
+			transition('void => *', [style({ transform: 'translateY(100%)', opacity: 0 }), animate('{{showTransitionParams}}')]),
+			transition('* => void', [
+				animate(
+					'{{hideTransitionParams}}',
+					style({
 						height: 0,
 						opacity: 0,
 						transform: 'translateY(-100%)'
-					}))
-				])
+					})
+				)
 			])
-		]
+		])
+	]
 })
 export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	@Input() message: Message = { severity: MessageStatus.Information };
 
-	@Input() index: number = 0;
+	@Input() index = 0;
 
-	@Input() showTransitionOptions: string = '';
+	@Input() showTransitionOptions = '';
 
-	@Input() hideTransitionOptions: string = '';
+	@Input() hideTransitionOptions = '';
 
 	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter();
 
@@ -105,13 +107,18 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	 */
 	getIconName(severity: MessageStatus): string {
 		switch (severity) {
-			case 'error': return 'error_outline';
-			case 'warning': return 'warning';
-			case 'alert': return 'add_alert';
-			case 'critical': return 'error';
-			case 'success': return 'done';
-			default: return '';
+			case 'error':
+				return 'error_outline';
+			case 'warning':
+				return 'warning';
+			case 'alert':
+				return 'add_alert';
+			case 'critical':
+				return 'error';
+			case 'success':
+				return 'done';
+			default:
+				return '';
 		}
 	}
-
 }

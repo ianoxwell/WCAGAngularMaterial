@@ -2,7 +2,6 @@ import { FormErrorCountPipe } from './form-error-count.pipe';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 describe('FormErrorCountPipe', () => {
-
 	const errControl = () => new FormControl(null, () => ({ error: true }));
 
 	let pipe: FormErrorCountPipe;
@@ -67,9 +66,12 @@ describe('FormErrorCountPipe', () => {
 		});
 
 		it('should return 2 for an error on a formgroup and sub-control', () => {
-			const control = new FormGroup({
-				err: errControl()
-			}, () => ({ error: true }));
+			const control = new FormGroup(
+				{
+					err: errControl()
+				},
+				() => ({ error: true })
+			);
 
 			const count = pipe.transform(control, true);
 
@@ -77,11 +79,7 @@ describe('FormErrorCountPipe', () => {
 		});
 
 		it('should return 2 for a form array with two errors', () => {
-			const control = new FormArray([
-				errControl(),
-				errControl(),
-				new FormControl()
-			]);
+			const control = new FormArray([errControl(), errControl(), new FormControl()]);
 
 			const count = pipe.transform(control, true);
 
@@ -106,7 +104,6 @@ describe('FormErrorCountPipe', () => {
 	});
 
 	describe('cross-field errors', () => {
-
 		let err1: FormControl;
 		let err2: FormControl;
 		let err3: FormControl;

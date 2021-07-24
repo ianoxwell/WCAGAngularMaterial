@@ -1,4 +1,4 @@
-import { ComponentType } from "@angular/cdk/overlay";
+import { ComponentType } from '@angular/cdk/overlay';
 
 /** Validation */
 export enum ValidationMessageType {

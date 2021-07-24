@@ -29,17 +29,12 @@ export class AppComponent extends ComponentBase implements OnInit {
 	ngOnInit(): void {
 		// fix for WCAG overlay bug - https://github.com/angular/components/issues/20001
 		this.overlayContainer.getContainerElement().setAttribute('role', 'region');
-		this.pageTitleService
-			.listenPageTitle()
-			.pipe(takeUntil(this.ngUnsubscribe))
-			.subscribe();
+		this.pageTitleService.listenPageTitle().pipe(takeUntil(this.ngUnsubscribe)).subscribe();
 		this.stateService
 			.getCurrentTheme()
 			.pipe(
 				tap((theme: string) => {
-					this.themes.forEach((item: string) =>
-						this.renderer.removeClass(this.document.body, item)
-					);
+					this.themes.forEach((item: string) => this.renderer.removeClass(this.document.body, item));
 					this.renderer.addClass(this.document.body, theme);
 					this.applyThemeOnOverlays(theme);
 				}),
@@ -54,8 +49,7 @@ export class AppComponent extends ComponentBase implements OnInit {
 	private applyThemeOnOverlays(theme: string) {
 		// remove old theme class and add new theme class
 		// we're removing any css class that contains '-theme' string but your theme classes can follow any pattern
-		const overlayContainerClasses =
-			this.overlayContainer.getContainerElement().classList;
+		const overlayContainerClasses = this.overlayContainer.getContainerElement().classList;
 		const themeClassesToRemove = Array.from(this.themes);
 		if (themeClassesToRemove.length) {
 			overlayContainerClasses.remove(...themeClassesToRemove);

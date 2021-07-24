@@ -21,4 +21,8 @@ export function autoSpy<T>(obj: new (...args: any[]) => T): Spy<T> {
 /** Keeps the types of properties of a type but assigns type of Spy to the methods */
 type SpyOf<T> = T &
 	// tslint:disable-next-line: no-any
-	Partial<{ [k in keyof T]: T[k] extends (...args: any[]) => any ? jasmine.Spy : T[k] }>;
+	Partial<
+		{
+			[k in keyof T]: T[k] extends (...args: any[]) => any ? jasmine.Spy : T[k];
+		}
+	>;
