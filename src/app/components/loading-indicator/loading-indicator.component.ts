@@ -30,7 +30,7 @@ export class LoadingIndicatorComponent implements OnDestroy {
 	loadingWait$: Observable<string> = timer(this.dueTime, this.periodDelay).pipe(
 		take(this.dataLoadingText.length),
 		map((i: number) => {
-			this.liveAnnouncer.announce(this.dataLoadingText[i]);
+			void this.liveAnnouncer.announce(this.dataLoadingText[i]);
 			return this.dataLoadingText[i];
 		})
 	);
@@ -45,6 +45,6 @@ export class LoadingIndicatorComponent implements OnDestroy {
 			this.pageLoadedAltText !== ''
 				? this.pageLoadedAltText
 				: `Data loaded, showing contents for page, ${this.pageTitleService.getTitle()}`;
-		this.liveAnnouncer.announce(loadedText);
+		void this.liveAnnouncer.announce(loadedText);
 	}
 }

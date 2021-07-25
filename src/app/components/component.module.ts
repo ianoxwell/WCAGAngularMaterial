@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ApplicationPipesModule } from '@pipes/application-pipes.module';
 import { MessageService } from '@services/message.service';
 import { PageTitleService } from '@services/page-title.service';
+import { RequiredValidator } from '@validators/required.validator';
 import { CompleteMaterialModule } from '../app-material.module';
 import { ALinkDirective } from '../directives/a-link.directive';
 import { FooterComponent } from './footer/footer.component';
@@ -43,6 +44,6 @@ import { ToastComponent } from './toast/toast.component';
 		LoadingIndicatorComponent
 	],
 	exports: [ToastComponent, FormsComponent, PageTitleComponent, FooterComponent, HeaderComponent, LoadingIndicatorComponent],
-	providers: [MessageService, PageTitleService]
+	providers: [MessageService, PageTitleService, RequiredValidator]
 })
 export class ComponentModule {}

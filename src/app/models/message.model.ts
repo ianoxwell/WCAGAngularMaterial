@@ -35,12 +35,12 @@ export interface Message {
 	severity: MessageStatus;
 	summary?: string;
 	detail?: string;
-	id?: any;
+	id?: number;
 	key?: string;
 	life?: number;
 	sticky?: boolean;
 	closable?: boolean;
-	data?: any;
+	data?: string;
 }
 
 export interface CloseMessage {

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Component({
 	template: ''
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ComponentBase implements OnDestroy {
 	ngUnsubscribe: Subject<void> = new Subject();
 

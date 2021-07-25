@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { demoTable } from '@models/demo-table.model';
+import { StaticTableData } from './static-data';
 
 @Component({
 	selector: 'app-tables',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./tables.component.scss']
 })
 export class TablesComponent implements OnInit {
-	constructor() {}
+	demoTable: demoTable[] = StaticTableData;
 
-	ngOnInit() {}
+	ngOnInit(): void {
+		console.log('table started here');
+	}
 }

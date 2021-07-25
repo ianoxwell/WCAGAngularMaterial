@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root'
 })
 export class PageTitleService {
-	defaultTitle = environment.appTitle;
-	defaultUrl = environment.defaultRoute;
+	defaultTitle: string = environment.appTitle;
+	defaultUrl: string = environment.defaultRoute;
 	pageTitleSubject$ = new BehaviorSubject<string>(this.defaultTitle);
 	pageUrlSubject$ = new BehaviorSubject<string>('');
 	urlHistory: string[] = []; // future provision for go-back button
@@ -32,9 +32,9 @@ export class PageTitleService {
 				return event instanceof ActivationEnd;
 			}),
 			map((value: ActivationEnd) => {
-				let title = value.snapshot.data.title ? value.snapshot.data.title : this.defaultTitle;
+				let title: string = value.snapshot.data.title ? (value.snapshot.data.title as string) : this.defaultTitle;
 				if (!!value.snapshot.firstChild) {
-					title = value.snapshot.firstChild.data.title ? value.snapshot.firstChild.data.title : this.defaultTitle;
+					title = value.snapshot.firstChild.data.title ? (value.snapshot.firstChild.data.title as string) : this.defaultTitle;
 				}
 				this.setTitle(title);
 				this.urlHistory.push(this.router.url);
@@ -54,13 +54,13 @@ export class PageTitleService {
 			const fullTitle = `${title}`;
 			this.title.setTitle(fullTitle);
 			this.pageTitleSubject$.next(fullTitle);
-			this.liveAnnouncer.announce(fullTitle);
+			void this.liveAnnouncer.announce(fullTitle);
 		}
 	}
 
 	/** Action to announce for screen reader the page title. */
 	announceTitle(): void {
-		this.liveAnnouncer.announce(this.title.getTitle());
+		void this.liveAnnouncer.announce(this.title.getTitle());
 	}
 
 	/**

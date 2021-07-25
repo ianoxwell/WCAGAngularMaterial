@@ -1,14 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ValidationErrorObject } from '@models/common.model';
 
 @Pipe({
 	name: 'formErrorPipe'
 })
 export class FormErrorMessagePipe implements PipeTransform {
-	transform(errorKey: string, errorObj: any): string {
+	/**
+	 * Pipe transform the ValidationError into string error phrase.
+	 * @param errorKey string representation of common errors.
+	 * @param errorObj message or further information on the error.
+	 * @returns string for user to describe the error in English.
+	 */
+	transform(errorKey: string, errorObj: ValidationErrorObject): string {
 		return this.getErrorMessage(errorKey, errorObj);
 	}
 
-	getErrorMessage(errorKey: string, errorObj: any): string {
+	/**
+	 * Gets the error message from the string key.
+	 * @param errorKey string representation of common errors.
+	 * @param errorObj message or further information on the error.
+	 * @returns string for user to describe the error in English.
+	 */
+	private getErrorMessage(errorKey: string, errorObj: ValidationErrorObject): string {
 		let errorMessage = '';
 
 		switch (errorKey) {
@@ -25,18 +38,18 @@ export class FormErrorMessagePipe implements PipeTransform {
 				errorMessage = 'This email address or phone number is invalid';
 				break;
 			case 'min':
-				errorMessage = `This field does not meet the minimum value of ${errorObj.min}.`;
+				errorMessage = `This field does not meet the minimum value of ${errorObj.min as number}.`;
 				break;
 			case 'max':
-				errorMessage = `This field value exceeds the maximum value of ${errorObj.max}.`;
+				errorMessage = `This field value exceeds the maximum value of ${errorObj.max as number}.`;
 				break;
 			case 'minlength':
-				errorMessage = `This field must be at least ${errorObj.requiredLength} characters long.
-				Currently it is ${errorObj.actualLength} characters long.`;
+				errorMessage = `This field must be at least ${errorObj.requiredLength as number} characters long.
+				Currently it is ${errorObj.actualLength as number} characters long.`;
 				break;
 			case 'maxlength':
-				errorMessage = `This field cannot exceed ${errorObj.requiredLength} characters long.
-				Currently it is ${errorObj.actualLength} characters long.`;
+				errorMessage = `This field cannot exceed ${errorObj.requiredLength as number} characters long.
+				Currently it is ${errorObj.actualLength as number} characters long.`;
 				break;
 			case 'matDatepickerParse': // Angular material mat-datepicker component validation
 				errorMessage = `Invalid date format.`;

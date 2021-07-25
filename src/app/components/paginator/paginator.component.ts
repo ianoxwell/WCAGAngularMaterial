@@ -12,7 +12,7 @@ export class PaginatorComponent {
 	/** The current page index. */
 	@Input() pageIndex = 0;
 	/** Current max number of items to display */
-	@Input() pageSize = environment.resultsPerPage;
+	@Input() pageSize: number = environment.resultsPerPage;
 	/** Total length of the database */
 	@Input() length = 0;
 	/** Total count of all items to be displayed */
@@ -61,7 +61,7 @@ export class PaginatorComponent {
 	}
 	/** When the mat-select selectionChange triggers - call emitChanges */
 	pageSizeChange(): void {
-		this.pageSize = this.perPage.value;
+		this.pageSize = Number(this.perPage.value);
 		this.emitChanges();
 	}
 	/** Whether there is a previous page. */

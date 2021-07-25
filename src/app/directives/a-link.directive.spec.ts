@@ -1,4 +1,3 @@
-import { TestBed, async } from '@angular/core/testing';
 import { ALinkDirective } from './a-link.directive';
 
 describe('Directive: ALink', () => {

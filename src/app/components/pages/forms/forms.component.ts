@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
+import { MessageStatus } from '@models/message.model';
+import { MessageService } from '@services/message.service';
+import { RequiredValidator } from '@validators/required.validator';
 
 @Component({
 	selector: 'app-forms',
@@ -20,7 +23,7 @@ export class FormsComponent implements OnInit, AfterViewInit {
 		{ title: 'Victoria', value: 'VIC' },
 		{ title: 'Western Australia', value: 'WA' }
 	];
-	constructor(private fb: FormBuilder) {}
+	constructor(private fb: FormBuilder, private required: RequiredValidator, private messageService: MessageService) {}
 
 	ngOnInit(): void {
 		this.form = this.createForm();
@@ -39,8 +42,9 @@ export class FormsComponent implements OnInit, AfterViewInit {
 	 * @param open boolean to find out when the mat-select has been closed.
 	 */
 	setFakeAriaControl(open: boolean): void {
-		if (!open) {
-			this.stateSelectCombo?._elementRef.nativeElement.setAttribute('aria-controls', 'fakeBox');
+		if (!open && !!this.stateSelectCombo) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+			this.stateSelectCombo._elementRef.nativeElement.setAttribute('aria-controls', 'fakeBox');
 		}
 	}
 
@@ -53,19 +57,19 @@ export class FormsComponent implements OnInit, AfterViewInit {
 	 */
 	createForm(): FormGroup {
 		return this.fb.group({
-			name: ['', Validators.required],
+			name: ['', this.required.required],
 			email: [
 				'',
 				[
-					Validators.required,
+					this.required.required,
 					Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
 					Validators.minLength(4),
 					Validators.maxLength(100)
 				]
 			],
-			mobile: ['', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(8), Validators.maxLength(14)]],
-			address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-			state: ['', Validators.required],
+			mobile: ['', [this.required.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(8), Validators.maxLength(14)]],
+			address: ['', [this.required.required, Validators.minLength(3), Validators.maxLength(100)]],
+			state: ['', this.required.required],
 			description: ''
 		});
 	}
@@ -73,6 +77,7 @@ export class FormsComponent implements OnInit, AfterViewInit {
 	submitForm(): void {
 		this.form.markAllAsTouched();
 		this.form.updateValueAndValidity();
+		this.messageService.add({ severity: MessageStatus.Success, summary: 'Save button pressed', life: 8000 });
 
 		if (this.form.valid) {
 			console.log('valid - ready to proceeding');

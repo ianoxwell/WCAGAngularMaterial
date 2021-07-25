@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,24 +17,22 @@ describe('HeaderComponent', () => {
 
 	const stateServiceSpy: Spy<StateService> = autoSpy(StateService);
 
-	beforeEach(
-		waitForAsync(() => {
-			TestBed.configureTestingModule({
-				imports: [
-					RouterTestingModule,
-					MatMenuModule,
-					MatIconModule,
-					MatTooltipModule,
-					MatInputModule,
-					MatDividerModule,
-					NoopAnimationsModule,
-					MatButtonModule
-				],
-				declarations: [HeaderComponent],
-				providers: [{ provide: StateService, useValue: stateServiceSpy }]
-			}).compileComponents();
-		})
-	);
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [
+				RouterTestingModule,
+				MatMenuModule,
+				MatIconModule,
+				MatTooltipModule,
+				MatInputModule,
+				MatDividerModule,
+				NoopAnimationsModule,
+				MatButtonModule
+			],
+			declarations: [HeaderComponent],
+			providers: [{ provide: StateService, useValue: stateServiceSpy }]
+		}).compileComponents();
+	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(HeaderComponent);

@@ -1,7 +1,7 @@
 export type Spy<T> = T & jasmine.SpyObj<T>;
 
 /** Create an object with methods that are autoSpy-ed to use as mock dependency */
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function autoSpy<T>(obj: new (...args: any[]) => T): Spy<T> {
 	const res: SpyOf<T> = {} as SpyOf<T>;
 
@@ -20,9 +20,9 @@ export function autoSpy<T>(obj: new (...args: any[]) => T): Spy<T> {
 
 /** Keeps the types of properties of a type but assigns type of Spy to the methods */
 type SpyOf<T> = T &
-	// tslint:disable-next-line: no-any
 	Partial<
 		{
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			[k in keyof T]: T[k] extends (...args: any[]) => any ? jasmine.Spy : T[k];
 		}
 	>;

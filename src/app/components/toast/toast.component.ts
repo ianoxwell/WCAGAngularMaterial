@@ -1,5 +1,5 @@
 import { animateChild, AnimationEvent, query, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { ComponentBase } from '@components/base/base.component.base';
 import { CloseMessage, Message } from '@models/message.model';
 import { MessageService } from '@services/message.service';
@@ -31,19 +31,19 @@ export class ToastComponent extends ComponentBase implements OnInit {
 
 	@Input() hideTransitionOptions = '250ms ease-in';
 
-	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter();
+	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter<CloseMessage>();
 
-	@ViewChild('container', { static: false }) containerViewChild!: ElementRef;
+	@ViewChild('container', { static: false }) containerViewChild!: ElementRef<HTMLDivElement>;
 
 	messages: Message[] = [];
 
 	mask: HTMLDivElement | null = null;
 
-	constructor(public messageService: MessageService) {
+	constructor(public messageService: MessageService, private renderer: Renderer2) {
 		super();
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.subscribeMessages().subscribe();
 		this.subscribeClear().subscribe();
 	}
@@ -118,7 +118,7 @@ export class ToastComponent extends ComponentBase implements OnInit {
 	enableModality(): void {
 		if (!this.mask) {
 			this.mask = document.createElement('div');
-			this.mask.style.zIndex = String(Number(this.containerViewChild.nativeElement.style.zIndex) - 1);
+			this.mask.style.zIndex = String(this.baseZIndex + 1000 - 1);
 			if (this.mask.classList) {
 				this.mask.classList.add('ui-widget-overlay');
 				this.mask.classList.add('ui-dialog-mask');
@@ -145,7 +145,7 @@ export class ToastComponent extends ComponentBase implements OnInit {
 	 */
 	onAnimationStart(event: AnimationEvent): void {
 		if (event.fromState === 'void' && this.autoZIndex) {
-			this.containerViewChild.nativeElement.style.zIndex = String(this.baseZIndex + 1000);
+			this.containerViewChild.nativeElement.setAttribute('style', `z-index: ${String(this.baseZIndex + 1000)}`);
 		}
 	}
 }

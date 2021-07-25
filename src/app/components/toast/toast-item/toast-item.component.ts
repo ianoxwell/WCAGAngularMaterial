@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { CloseMessage, Message, MessageStatus } from '@models/message.model';
+import { Subject, timer } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-toast-item',
@@ -38,16 +40,17 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 
 	@Input() hideTransitionOptions = '';
 
-	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter();
+	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter<CloseMessage>();
 
 	@ViewChild('container', { static: false }) containerViewChild!: ElementRef;
 
 	messageStatus = MessageStatus;
+	ngUnsubscribe: Subject<void> = new Subject();
 
-	timeout: any;
+	readonly baseMessageLife: number = 8000;
 
 	/** LifeCycle event after the view has been initialised. */
-	ngAfterViewInit() {
+	ngAfterViewInit(): void {
 		this.initTimeout();
 	}
 
@@ -57,21 +60,24 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	 */
 	initTimeout(): void {
 		if (!this.message.sticky) {
-			this.timeout = setTimeout(() => {
-				this.closeToast.emit({
-					index: this.index,
-					message: this.message
-				});
-			}, this.message.life || 3000);
+			timer(this.message.life || this.baseMessageLife)
+				.pipe(
+					tap(() =>
+						this.closeToast.emit({
+							index: this.index,
+							message: this.message
+						})
+					),
+					takeUntil(this.ngUnsubscribe)
+				)
+				.subscribe();
 		}
 	}
 
 	/** Clears any existing timeouts. */
 	clearTimeout(): void {
-		if (this.timeout) {
-			clearTimeout(this.timeout);
-			this.timeout = null;
-		}
+		this.ngUnsubscribe.next();
+		this.ngUnsubscribe.complete();
 	}
 
 	/** Dom event triggered by mouse enter. */
@@ -85,7 +91,7 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	}
 
 	/** Dom event triggered by clicking on close icon. */
-	onCloseIconClick(event: MouseEvent | Event) {
+	onCloseIconClick(event: MouseEvent | Event): void {
 		this.clearTimeout();
 
 		this.closeToast.emit({
@@ -96,7 +102,7 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 		event.preventDefault();
 	}
 
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		this.clearTimeout();
 	}
 
