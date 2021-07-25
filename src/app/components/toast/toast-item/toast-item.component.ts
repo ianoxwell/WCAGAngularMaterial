@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { IDictionary } from '@models/common.model';
 import { CloseMessage, Message, MessageStatus } from '@models/message.model';
 import { Subject, timer } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -36,9 +37,9 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 
 	@Input() index = 0;
 
-	@Input() showTransitionOptions = '';
+	@Input() showTransitionOptions = '300ms ease-out';
 
-	@Input() hideTransitionOptions = '';
+	@Input() hideTransitionOptions = '250ms ease-in';
 
 	@Output() closeToast: EventEmitter<CloseMessage> = new EventEmitter<CloseMessage>();
 
@@ -55,8 +56,7 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Initialises the timeout based on the message Life.
-	 * TODO modify to RXJS.
+	 * Initialises the timeout based on the message Life, emits to closeToast when timer complete.
 	 */
 	initTimeout(): void {
 		if (!this.message.sticky) {
@@ -112,19 +112,13 @@ export class ToastItemComponent implements AfterViewInit, OnDestroy {
 	 * @returns string of the material icon to use.
 	 */
 	getIconName(severity: MessageStatus): string {
-		switch (severity) {
-			case 'error':
-				return 'error_outline';
-			case 'warning':
-				return 'warning';
-			case 'alert':
-				return 'add_alert';
-			case 'critical':
-				return 'error';
-			case 'success':
-				return 'done';
-			default:
-				return '';
-		}
+		const iconArray: IDictionary<string> = {
+			error: 'error_outline',
+			warning: 'warning',
+			alert: 'add_alert',
+			critical: 'error',
+			success: 'done'
+		};
+		return !!iconArray[severity] ? iconArray[severity] : '';
 	}
 }

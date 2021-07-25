@@ -4,6 +4,7 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ComponentBase } from '@components/base/base.component.base';
 import { PageTitleService } from '@services/page-title.service';
 import { StateService } from '@services/state.service';
+import { Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -30,23 +31,28 @@ export class AppComponent extends ComponentBase implements OnInit {
 		// fix for WCAG overlay bug - https://github.com/angular/components/issues/20001
 		this.overlayContainer.getContainerElement().setAttribute('role', 'region');
 		this.pageTitleService.listenPageTitle().pipe(takeUntil(this.ngUnsubscribe)).subscribe();
-		this.stateService
-			.getCurrentTheme()
-			.pipe(
-				tap((theme: string) => {
-					this.themes.forEach((item: string) => this.renderer.removeClass(this.document.body, item));
-					this.renderer.addClass(this.document.body, theme);
-					this.applyThemeOnOverlays(theme);
-				}),
-				takeUntil(this.ngUnsubscribe)
-			)
-			.subscribe();
+		this.setColorTheme().subscribe();
+	}
+
+	/**
+	 * Changes / sets the theme on the body and the overlay for dark/light theme.
+	 * @returns Observable of the current theme.
+	 */
+	setColorTheme(): Observable<string> {
+		return this.stateService.getCurrentTheme().pipe(
+			tap((theme: string) => {
+				this.themes.forEach((item: string) => this.renderer.removeClass(this.document.body, item));
+				this.renderer.addClass(this.document.body, theme);
+				this.applyThemeOnOverlays(theme);
+			}),
+			takeUntil(this.ngUnsubscribe)
+		);
 	}
 
 	/**
 	 * Apply the current theme on components with overlay (e.g. Dropdowns, Dialogs)
 	 */
-	private applyThemeOnOverlays(theme: string) {
+	applyThemeOnOverlays(theme: string): void {
 		// remove old theme class and add new theme class
 		// we're removing any css class that contains '-theme' string but your theme classes can follow any pattern
 		const overlayContainerClasses = this.overlayContainer.getContainerElement().classList;

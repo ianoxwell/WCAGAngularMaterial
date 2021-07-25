@@ -20,9 +20,6 @@ export class HeaderComponent extends ComponentBase implements OnInit {
 		super();
 	}
 
-	/**
-	 * Gets the current user on load
-	 */
 	ngOnInit(): void {
 		this.isDarkTheme = this.stateService.updateTheme();
 	}

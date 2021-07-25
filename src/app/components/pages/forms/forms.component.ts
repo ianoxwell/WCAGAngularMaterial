@@ -48,9 +48,6 @@ export class FormsComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	get emailErrors(): ValidationErrors {
-		return this.form.get('email')?.errors as ValidationErrors;
-	}
 	/**
 	 * Creates the form and applies validators to relevant form fields.
 	 * @returns The created form group.
@@ -74,15 +71,23 @@ export class FormsComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+	/**
+	 * Submit Form action - show errors.
+	 */
 	submitForm(): void {
 		this.form.markAllAsTouched();
 		this.form.updateValueAndValidity();
-		this.messageService.add({ severity: MessageStatus.Success, summary: 'Save button pressed', life: 8000 });
 
 		if (this.form.valid) {
-			console.log('valid - ready to proceeding');
+			this.messageService.add({ severity: MessageStatus.Success, summary: 'Fake Form Submitted', life: 8000 });
 		} else {
-			console.log('show a bunch of errors.', this.form);
+			const errors = this.getListErrors();
+			this.messageService.add({
+				severity: MessageStatus.Error,
+				summary: 'Form Errors, please correct:',
+				detail: errors.join(`, `),
+				life: 12000
+			});
 		}
 	}
 
@@ -91,5 +96,21 @@ export class FormsComponent implements OnInit, AfterViewInit {
 	 */
 	resetForm(): void {
 		this.form.reset();
+	}
+
+	/**
+	 * If a control has an error it adds the control name to the string array.
+	 * @returns list array of controls with errors in them.
+	 */
+	getListErrors(): string[] {
+		const errorList: string[] = [];
+		Object.keys(this.form.controls).forEach((controlKey: string) => {
+			const controlErrors: ValidationErrors | undefined | null = this.form.get(controlKey)?.errors;
+			if (!!controlErrors) {
+				errorList.push(controlKey);
+			}
+		});
+
+		return errorList;
 	}
 }

@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StateService } from '@services/state.service';
@@ -16,6 +16,7 @@ describe('HeaderComponent', () => {
 	let fixture: ComponentFixture<HeaderComponent>;
 
 	const stateServiceSpy: Spy<StateService> = autoSpy(StateService);
+	stateServiceSpy.toggleTheme.and.returnValue(true);
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -23,7 +24,7 @@ describe('HeaderComponent', () => {
 				RouterTestingModule,
 				MatMenuModule,
 				MatIconModule,
-				MatTooltipModule,
+				MatToolbarModule,
 				MatInputModule,
 				MatDividerModule,
 				NoopAnimationsModule,
@@ -42,5 +43,12 @@ describe('HeaderComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should toggle the theme', () => {
+		component.isDarkTheme = false;
+		component.toggleTheme();
+
+		expect(component.isDarkTheme).toBeTrue();
 	});
 });

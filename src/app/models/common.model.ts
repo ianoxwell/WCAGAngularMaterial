@@ -6,3 +6,8 @@ export interface ValidationErrorObject {
 	actualLength?: number;
 	message?: string;
 }
+
+/** Generic key/values */
+export interface IDictionary<T> {
+	[Key: string]: T;
+}
