@@ -6,7 +6,24 @@
 // Be sure that you only ever include this mixin once!
 @import '~@angular/material/theming';
 @import './app/styles/variables.scss';
-@include mat-core();
+
+$fontConfig: (
+  display-4: mat-typography-level($heading-level-1, $heading-level-1-line, 300, 'Roboto', -0.0134em),
+  display-3: mat-typography-level($heading-level-2, $heading-level-2-line, 400, 'Roboto', -0.0089em),
+  display-2: mat-typography-level(45px, 48px, 400, 'Roboto', 0.0000em),
+  display-1: mat-typography-level(34px, 40px, 400, 'Roboto', 0.0074em),
+  headline: mat-typography-level(28px, 36px, 400, 'Roboto', 0.0000em),
+  title: mat-typography-level($heading-level-1, $heading-level-1-line, $font-weight-bold, 'Roboto', 0.0075em),
+  subheading-2: mat-typography-level($heading-level-4, $heading-level-4-line, 400, 'Roboto', -0.0094em),
+  subheading-1: mat-typography-level($heading-level-3, $heading-level-3-line, 500, 'Roboto', 0.0067em),
+  body-2: mat-typography-level($small-text-size, $body-text-size-line, 400, 'Roboto', 0.0179em),
+  body-1: mat-typography-level($body-text-size, $body-text-size-line, 300, 'Roboto', 0.0179em),
+  button: mat-typography-level($heading-level-4, $heading-level-4-line, $font-weight-bold, 'Roboto', 0.0893em),
+  caption: mat-typography-level($heading-level-4, $heading-level-4-line, 400, 'Roboto', 0.0333em),
+  input: mat-typography-level($body-text-size, 1.125, 400, 'Roboto', 1.5px)
+);
+
+@include mat-core($fontConfig);
 
 // https://material.angular.io/guide/theming#strong-focus-indicators
 @include mat-strong-focus-indicators(
@@ -57,6 +74,12 @@ a.mat-focus-indicator::before {
 a.mat-focus-indicator:focus-visible {
 	outline: none;
 }
+mat-form-field.mat-focused {
+	.mat-form-field-outline {
+		color: orange !important;
+	}
+}
+
 
 .dark-theme .mat-menu-item.active {
 	$alt-text: map-get($light-theme, foreground);

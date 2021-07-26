@@ -168,6 +168,8 @@ body .ui-toast .ui-toast-message.ui-toast-message-error {
 	color: $colour-text-on-success;
 }
 
+
+
 .dark-theme {
 	.mat-form-field-required-marker,
 	.mat-form-field.mat-focused
@@ -177,11 +179,6 @@ body .ui-toast .ui-toast-message.ui-toast-message-error {
 		.mat-form-field-label
 		.mat-form-field-required-marker {
 		color: $dark-warn-color;
-	}
-	mat-form-field.mat-focused {
-		.mat-form-field-outline {
-			color: orange !important;
-		}
 	}
 	.mat-form-field-prefix .mat-icon {
 		color: $light-primary-text !important;
@@ -203,9 +200,6 @@ body .ui-toast .ui-toast-message.ui-toast-message-error {
 		color: $light-warn-color;
 	}
 	mat-form-field.mat-focused {
-		.mat-form-field-outline {
-			color: orange !important;
-		}
 		.mat-form-field-label {
 			color: $dark-primary-text !important;
 		}
@@ -217,6 +211,10 @@ body .ui-toast .ui-toast-message.ui-toast-message-error {
 	a:-webkit-any-link {
 		color: $light-primary-text;
 	}
+}
+
+strong {
+	font-weight: $font-weight-bold;
 }
 
 .mat-form-field-prefix .mat-icon {

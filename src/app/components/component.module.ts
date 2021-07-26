@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { PageTitleComponent } from './page-title/page-title.component';
+import { BasicLayoutComponent } from './pages/basic-layout/basic-layout.component';
 import { FormsComponent } from './pages/forms/forms.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PaginatorModule } from './paginator/paginator.module';
@@ -34,6 +35,7 @@ import { ToastComponent } from './toast/toast.component';
 	declarations: [
 		ToastItemComponent,
 		ToastComponent,
+		BasicLayoutComponent,
 		FormsComponent,
 		TablesComponent,
 		PageTitleComponent,
