@@ -6,11 +6,6 @@ import { TablesComponent } from '@components/pages/tables/tables.component';
 
 const routes: Routes = [
 	{
-		path: '',
-		component: BasicLayoutComponent,
-		data: { title: `Angular Material WCAG Basic Layout Demo` }
-	},
-	{
 		path: 'forms',
 		component: FormsComponent,
 		data: { title: `Angular Material WCAG Forms Demo` }
@@ -22,8 +17,12 @@ const routes: Routes = [
 	},
 	{
 		path: '',
-		redirectTo: 'list',
-		pathMatch: 'full'
+		component: BasicLayoutComponent,
+		data: { title: `Angular Material WCAG Basic Layout Demo` }
+	},
+	{
+		path: '**',
+		redirectTo: ''
 	}
 ];
 

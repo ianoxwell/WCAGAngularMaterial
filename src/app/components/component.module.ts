@@ -12,14 +12,15 @@ import { ALinkDirective } from '../directives/a-link.directive';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { LoadingIndicatorModule } from './loading-indicator/loading-indicator.module';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { BasicLayoutComponent } from './pages/basic-layout/basic-layout.component';
 import { FormsComponent } from './pages/forms/forms.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PaginatorModule } from './paginator/paginator.module';
-import { SaveButtonComponent } from './save-button/save-button.component';
-import { ToastItemComponent } from './toast/toast-item/toast-item.component';
+import { SaveButtonModule } from './save-button/save-button.module';
 import { ToastComponent } from './toast/toast.component';
+import { ToastModule } from './toast/toast.module';
 
 @NgModule({
 	imports: [
@@ -30,20 +31,19 @@ import { ToastComponent } from './toast/toast.component';
 		RouterModule,
 		HttpClientModule,
 		ApplicationPipesModule,
-		PaginatorModule
+		PaginatorModule,
+		ToastModule,
+		SaveButtonModule,
+		LoadingIndicatorModule
 	],
 	declarations: [
-		ToastItemComponent,
-		ToastComponent,
 		BasicLayoutComponent,
 		FormsComponent,
 		TablesComponent,
 		PageTitleComponent,
 		ALinkDirective,
 		FooterComponent,
-		HeaderComponent,
-		SaveButtonComponent,
-		LoadingIndicatorComponent
+		HeaderComponent
 	],
 	exports: [ToastComponent, FormsComponent, PageTitleComponent, FooterComponent, HeaderComponent, LoadingIndicatorComponent],
 	providers: [MessageService, PageTitleService, RequiredValidator]

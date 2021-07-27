@@ -17,7 +17,7 @@ $fontConfig: (
   subheading-2: mat-typography-level($heading-level-4, $heading-level-4-line, 400, 'Roboto', -0.0094em),
   subheading-1: mat-typography-level($heading-level-3, $heading-level-3-line, 500, 'Roboto', 0.0067em),
   body-2: mat-typography-level($small-text-size, $body-text-size-line, 400, 'Roboto', 0.0179em),
-  body-1: mat-typography-level($body-text-size, $body-text-size-line, 300, 'Roboto', 0.0179em),
+  body-1: mat-typography-level($body-text-size, $body-text-size-line, 380, 'Roboto', 0.0179em),
   button: mat-typography-level($heading-level-4, $heading-level-4-line, $font-weight-bold, 'Roboto', 0.0893em),
   caption: mat-typography-level($heading-level-4, $heading-level-4-line, 400, 'Roboto', 0.0333em),
   input: mat-typography-level($body-text-size, 1.125, 400, 'Roboto', 1.5px)
