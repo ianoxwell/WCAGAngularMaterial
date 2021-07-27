@@ -11,8 +11,8 @@ The aim is to produce a repeatable #axeClean in any state of the app with re-usa
 
 ## WCAG resources
 
-I prefer going straight to the source and using the w3 produced resources directly./
-[How to Meet WCAG](https://www.w3.org/WAI/WCAG21/quickref/)
+I prefer going straight to the source and using the w3 produced resources directly.\
+[How to Meet WCAG](https://www.w3.org/WAI/WCAG21/quickref/)\
 [Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/)
 
 ## Deploy
