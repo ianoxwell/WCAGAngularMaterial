@@ -39,6 +39,11 @@
 		encourage developers in the past to use html elements semantically, although we can put a (click) in a div and it behaves like a
 		button it is in fact not a button. Not only does this help screen-readers but it also assists the next developer to read your code!
 	</p>
+	<p><strong>CDK Overlay</strong> - when I initially wrote this article the overlay zone displayed error in Axe because it was outside of
+		the any aria region and had no tag of it owns. Material used the overlay for any select dialog's, dialogs and menu items, the fact
+		that it had no role tag was not an actual problem to the screen readers as it was cdk-hidden area. I have noted there has been a
+		recent change in the axe detection so that a lack of role on the overlay does not present an issue at all now. The fix to add a role
+		to the region has remained in app.component.ts</p>
 </section>
 
 <section>
@@ -46,7 +51,8 @@
 	<p><strong>Outline</strong> - </p>
 	<p><strong>Errors</strong> - </p>
 	<p><strong>Auto complete of the form</strong> - </p>
-	<p><strong>Mat-select</strong> - </p>
+	<p><strong>Mat-select</strong> - Previously the role of combobox on the mat-select element itself would fail because it had none of the
+		required children. Mat-select is essentially a button that has a modal dialog that appears within the cdk-overlay</p>
 	<p><strong>Submit button</strong> - Historically when a form is not valid (errors or untouched) the pattern would be to use disabled on
 		the submit button however there have been numerous articles written that rightly propose this is an anti-pattern in terms of
 		accessibility. Notably there are very few shades of grey that actually meet the contrast requirements. This is before we talk about
