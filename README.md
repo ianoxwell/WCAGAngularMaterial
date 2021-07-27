@@ -1,27 +1,27 @@
 # WCAGAngularMaterial
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
+This project is aimed to test and demonstrate getting some simple pages in a SPA to comply with WCAG 2.1AA standards for web accessibility.\
+A demo of the site can be found [WCAG Angular material demonstration](https://ianoxwell.github.io/WCAGAngularMaterial/)
 
-## Development server
+## Axe clean and lighthouse 100%
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The aim is to produce a repeatable #axeClean in any state of the app with re-usable components between projects.
 
-## Code scaffolding
+![Axe Clean](./src/assets/axe-dev-clean.jpg)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## WCAG resources
 
-## Build
+I prefer going straight to the source and using the w3 produced resources directly./
+[How to Meet WCAG](https://www.w3.org/WAI/WCAG21/quickref/)
+[Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Deploy
 
-## Running unit tests
+Run `ng deploy --base-href=WCAGAngularMaterial` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests and lint
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The project has been set up with eslint as the linter.\
+Run `ng lint` to execute including eslint/prettier.
