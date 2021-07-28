@@ -37,7 +37,7 @@ export class MainTableComponent extends BaseTableComponent<IDemoTable> implement
 	/** on row / ingredient clicked emit to parent the row */
 	goto(row: IDemoTable): void {
 		this.messageService.add({
-			severity: MessageStatus.Information,
+			severity: MessageStatus.Success,
 			summary: `Selected row with id: ${row.id}`,
 			detail: `name: ${row.first_name} ${row.last_name}`,
 			life: 12000

@@ -48,23 +48,41 @@
 
 <section>
 	<h2>Forms</h2>
-	<p><strong>Outline</strong> - </p>
-	<p><strong>Errors</strong> - </p>
-	<p><strong>Auto complete of the form</strong> - </p>
+	<p><strong>Outline</strong> - The outline style has been chosen for visibility, large focus area and strong highlight on focus and
+		hover.</p>
+	<p><strong>Errors</strong> - Angular as a whole does validation well, displaying live (after touch/blur) that there is an error in the
+		form elements validation, but also which validation rule can have a customised message. This demo is using a centralised pipe for
+		error descriptions. Also note that on submit the field names with errors are displayed in the toast to give user indication of what
+		else is required. Would be nice - addition of amount of time user has to fill out the form and rehydration on refresh - to meet
+		WCAG3.0 draft.</p>
+	<p><strong>Auto complete of the form</strong> - This is a suggestion in the latest draft for WCAG3.0 that auto complete is on. In fact,
+		Chrome has for a long time made it difficult to turn off, and it depends strongly on the context. The demonstration here is a
+		contact form, so autocomplete is very desirable, but for instance a patient details for autocomplete is not sensible due to the
+		volume of expected varied answers. Where practical.</p>
 	<p><strong>Mat-select</strong> - Previously the role of combobox on the mat-select element itself would fail because it had none of the
 		required children. Mat-select is essentially a button that has a modal dialog that appears within the cdk-overlay</p>
 	<p><strong>Submit button</strong> - Historically when a form is not valid (errors or untouched) the pattern would be to use disabled on
 		the submit button however there have been numerous articles written that rightly propose this is an anti-pattern in terms of
 		accessibility. Notably there are very few shades of grey that actually meet the contrast requirements. This is before we talk about
 		the schematics of a button that has no action - and is therefore not a button, but is still selectable. </p>
+	<button mat-flat-button routerLink="/forms" color="primary" title="View forms in action">View Forms demo</button>
 </section>
 
 <section>
 	<h2>Table</h2>
+	<p><strong>Table</strong> - it has been found previously that '&#60;mat-table' has caused issues with screen-readers and use of (t)
+		keyboard navigation as the table is not read by the screen-reader as a table. Therefore it is suggested (from experience) to use the
+		native '&#60;table mat-table ' with the mat-table directive. As per the WCAG guide a caption has been added to the table
+		to provide context. Would be better if - addition of zebra stripes in the css.</p>
 	<p><strong>Data loading</strong> - when loading the tables page an artificial delay has been added to demonstrate the page-loader
-		component. All of the component messages are live-announced to give the user utilising narrator an indication of what is happening
-		on
-		the page.</p>
-	<p><strong>Keyboard Navigation</strong> - keyboard navigation in effect</p>
-	<p><strong>Table Paginator</strong> - This is a complicated one related in part to mat-select</p>
+		component. All of the component messages are live-announced to give the user utilising screen-readers an indication of what is
+		happening on the page.</p>
+	<p><strong>Keyboard Navigation</strong> - keyboard navigation for selectable elements only - note this does not include each row or even
+		the table as a whole. The row should also not have the (click) attribute for the exact same semantic reason above. Therefore the
+		sort headers are tab navigable along with the more_vert buttons. In a full app this may have a series of actions attached - such as
+		view, edit, delete and print. </p>
+	<p><strong>Table Paginator</strong> - This is a complicated one related in part to mat-select. The page size uses mat-select with the
+		existing issue around aria-controls tag coming up as a false positive in axe tools. Previously I re-wrote the paginator with an
+		updated mat-select, but for simplicity in this demo I have turned off the ability to specify page-size.</p>
+	<button mat-flat-button routerLink="/tables" color="primary" title="View table in action">View Table and data loading demo</button>
 </section>
