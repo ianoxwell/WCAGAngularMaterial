@@ -16,6 +16,7 @@ import { LoadingIndicatorModule } from './loading-indicator/loading-indicator.mo
 import { PageTitleComponent } from './page-title/page-title.component';
 import { BasicLayoutComponent } from './pages/basic-layout/basic-layout.component';
 import { FormsComponent } from './pages/forms/forms.component';
+import { MainTableComponent } from './pages/tables/main-table/main-table.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PaginatorModule } from './paginator/paginator.module';
 import { SaveButtonModule } from './save-button/save-button.module';
@@ -40,6 +41,7 @@ import { ToastModule } from './toast/toast.module';
 		BasicLayoutComponent,
 		FormsComponent,
 		TablesComponent,
+		MainTableComponent,
 		PageTitleComponent,
 		ALinkDirective,
 		FooterComponent,

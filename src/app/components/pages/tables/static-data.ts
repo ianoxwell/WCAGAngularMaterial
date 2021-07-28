@@ -1,7 +1,7 @@
-import { demoTable } from '@models/demo-table.model';
+import { IDemoTable } from '@models/demo-table.model';
 
 // generated for demo purposes from Mockaroo - https://www.mockaroo.com/
-export const StaticTableData: demoTable[] = [
+export const StaticTableData: IDemoTable[] = [
 	{
 		id: 1,
 		first_name: 'Coretta',

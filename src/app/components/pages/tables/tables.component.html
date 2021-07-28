@@ -1,3 +1,8 @@
-<p>
-  tables works!
-</p>
+<mat-card>
+	<div class="" *ngIf="pageLoaded$ | async; else showLoading">
+		<app-main-table [data]="demoTablePaged" [displayedColumns]="displayedColumns" (sortingPageChange)="onSortChange($event)"></app-main-table>
+	</div>
+	<ng-template #showLoading>
+		<app-loading-indicator [periodDelay]="1200" [dueTime]="0"></app-loading-indicator>
+	</ng-template>
+</mat-card>

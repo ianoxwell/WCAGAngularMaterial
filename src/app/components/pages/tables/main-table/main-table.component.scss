@@ -1,0 +1,18 @@
+@import '../../../../styles/variables.scss';
+
+.nav-list {
+	max-width: 4em;
+	text-align: center;
+}
+.small-columns {
+	max-width: 10em;
+}
+.mat-cell,
+.mat-header-cell {
+	padding: 0.2em;
+}
+caption {
+	text-align: left;
+	padding: 0.5rem;
+}
+

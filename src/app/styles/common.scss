@@ -231,3 +231,31 @@ strong {
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 }
+
+.bottom-sticky {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.responsive-table {
+	margin: 0.5rem;
+	height: calc(100vh - 14rem);
+	overflow: auto;
+}
+
+.dark-theme .mat-row.highlight {
+	.mat-cell {
+		background-color: $dark-accent-color !important;
+		color: $dark-primary-text !important;
+	}
+}
+.light-theme {
+	.highlight {
+		.mat-cell {
+			background-color: $light-accent-color !important;
+			color: $light-primary-text !important;
+		}
+	}
+}

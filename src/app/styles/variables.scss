@@ -33,6 +33,7 @@ $light-warn: mat-palette($mat-red, 900);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 $light-primary-color: mat-color($mat-teal, 700);
+$light-accent-color: mat-color($mat-deep-orange, 900);
 $light-warn-color: mat-color($mat-red, 900);
 
 // Dark theme
@@ -42,6 +43,7 @@ $dark-warn: mat-palette($mat-red, 200);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 $dark-primary-color: mat-color($mat-teal, 700);
+$dark-accent-color: mat-color($mat-amber, A200);
 $dark-warn-color: mat-color($mat-red, 200);
 
 
