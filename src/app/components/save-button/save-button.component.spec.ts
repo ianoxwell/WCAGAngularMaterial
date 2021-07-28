@@ -1,4 +1,3 @@
-import { NoopAnimationPlayer } from '@angular/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +9,7 @@ describe('SaveButtonComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [MatIconModule, MatButtonModule, NoopAnimationPlayer],
+			imports: [MatIconModule, MatButtonModule],
 			declarations: [SaveButtonComponent]
 		}).compileComponents();
 	});

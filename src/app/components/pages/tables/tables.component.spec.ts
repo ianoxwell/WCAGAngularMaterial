@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
+import { LoadingIndicatorComponent } from '@components/loading-indicator/loading-indicator.component';
+import { MockComponent } from 'ng-mocks';
+import { MainTableComponent } from './main-table/main-table.component';
 import { TablesComponent } from './tables.component';
 
 describe('TablesComponent', () => {
@@ -7,7 +11,8 @@ describe('TablesComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [TablesComponent]
+			imports: [MatCardModule],
+			declarations: [TablesComponent, MockComponent(MainTableComponent), MockComponent(LoadingIndicatorComponent)]
 		}).compileComponents();
 	});
 
